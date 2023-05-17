@@ -3,9 +3,12 @@ package indra.talentCamp.interfaces;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import indra.talentCamp.generics.CajaFuerte;
+import indra.talentCamp.generics.Operacion;
+
 public class Program {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		
 		// lista definida por interfaz de Area
 		List<Area> figuras = Arrays.asList(
@@ -45,9 +48,45 @@ public class Program {
 		
 		System.out.println("tipo: " + listaFiguras.getClass());
 		
-		// implementar interfax comparable de la clase figura para ordenar
+		// implementar interfaz comparable de la clase figura para ordenar por area
 		Collections.sort(listaFiguras);
 		listaFiguras.forEach(System.out::println);
+		
+		//ejemplo uso interfaz funcional
+		//cualquier tipo de datos y operacion
+		Operacion<Integer> suma = (a,b) -> (a+b);
+		Integer res = suma.operar(2, 2);
+		System.out.println("sumar 2+2 es: " + res);
+		
+		//cualquier tipo de operacion con integers
+		OperacionInteger suma2 = (a,b) -> (a+b);
+		Integer res2 = suma2.operar(2, 2);
+		System.out.println("sumar 2+2 es (int): " + res2);
+		
+		//Ejemplo CajaFuerte generico
+		CajaFuerte<String> claveTexto = new CajaFuerte<>("Abrete sesamo");
+		claveTexto.guardarValor("La clavedel home banking");
+		String claveOk = claveTexto.leerValor("Abrete sesamo");
+		System.out.println("La clave es: " + claveOk);
+		
+		System.out.println("Intentando acceder con una clave erronea: ");
+		String claveKo = claveTexto.leerValor("Mcwbonia");
+		
+		//Ejemplo CajaFuerte integer
+		CajaFuerte<Integer> claveNum = new CajaFuerte<>("Abrete sesamo");
+		claveNum.guardarValor(45);
+		Integer claveOkNum = claveNum.leerValor("Abrete sesamo");
+		System.out.println("La clave es: " + claveOkNum);
+		
+		System.out.println("Intentando acceder con una clave erronea: ");
+		Integer claveKoNum = claveNum.leerValor("Mcwbonia");
+		System.out.println("La clave " + claveKoNum + " es incorrecta.");
+		
+		
+		
+		
+		
+		
 	}
 	
 }
