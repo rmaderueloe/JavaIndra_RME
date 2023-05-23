@@ -107,6 +107,11 @@ public class Program {
         System.out.println("elemento: " + colaPrio.poll() + ", se elimino el elemento 5");
         System.out.println("elemento 'cabeza' de la cola: " + colaPrio.peek());
         
+        // holaMundo camelCase
+        // HolaMundo PascalCase
+        // hola_mundo snake_case 
+        // hola-mundo kebab-case
+        
 	}
 
 }
